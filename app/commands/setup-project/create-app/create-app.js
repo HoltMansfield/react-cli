@@ -64,7 +64,8 @@ const addNpmPackages = async () => {
     'react-router-dom@next',
     'react-router@next',
     'use-substate',
-    'react-toastify'
+    'react-toastify',
+    '@sentry/browser'
   ]
   const devPackageList = [
     'react-testing-library',
