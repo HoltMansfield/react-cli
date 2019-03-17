@@ -8,7 +8,7 @@ const td = global.td
 const themeDouble = {
   themeObject: { color: 'red' }
 }
-td.replace('../../theme/theme', themeDouble)
+td.replace('./theme', themeDouble)
 const materialDouble = {
   createMuiTheme: td.func()
 }

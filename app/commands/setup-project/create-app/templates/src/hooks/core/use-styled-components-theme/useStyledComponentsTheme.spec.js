@@ -15,7 +15,7 @@ const themeDouble = {
     }
   }
 }
-td.replace('../../theme/theme', themeDouble)
+td.replace('hooks/core/use-theme/theme', themeDouble)
 const materialDouble = {
   createMuiTheme: td.func()
 }

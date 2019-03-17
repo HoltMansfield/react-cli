@@ -46,6 +46,7 @@ const copyTemplates = async (root, seperator) => {
 }
 
 const addNpmPackages = async () => {
+  const seperator = projectPaths.getSeparator()
   const packageList = [
     'animate-css-styled-components',
     'auth0-js',
@@ -79,6 +80,8 @@ const addNpmPackages = async () => {
   try {
     // first we install npm packages
     shell.execute(`cd ${newAppName} && npm i ${packageList.join(' ')}`)
+
+    await fileSystem.deleteFile(`${root}${seperator}package-lock.json`)
 
     // then we install dev npm packages
     shell.execute(`cd ${newAppName} && npm i -D ${devPackageList.join(' ')}`)

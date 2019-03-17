@@ -2,7 +2,6 @@ import { renderHook, cleanup } from 'react-hooks-testing-library'
 
 
 const useSubstateDouble = td.replace('use-substate')
-const raeDouble = td.replace('@dol/react-app-essentials')
 const actionsDouble = { foundation: { setShowOverlay: td.func() } }
 td.replace('redux/actions', actionsDouble)
 
@@ -57,7 +56,7 @@ test('setShowOverlay dispatches an action into the store', () => {
   td.when(useSubstateDouble.useSubstate(td.matchers.anything()))
     .thenReturn(useSubstateResponse)
 
-  td.when(actionsDouble.setShowOverlay(td.matchers.anything()))
+  td.when(actionsDouble.foundation.setShowOverlay(td.matchers.anything()))
     .thenReturn(expectedActionCreator)
 
   // render the hook in an unseen component
