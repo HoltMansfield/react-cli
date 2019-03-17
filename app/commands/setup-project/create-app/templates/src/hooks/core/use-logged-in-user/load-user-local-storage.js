@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { foundationActions } from '@dol/react-app-essentials'
+import * as actions from 'redux/actions'
 
 
 const tokenIsExpired = () => {
@@ -13,7 +13,7 @@ const tokenIsExpired = () => {
 }
 
 const setLoggedInUser = (store, newLoggedInUser) => {
-  store.dispatch(foundationActions.setLoggedInUser(newLoggedInUser))
+  store.dispatch(actions.foundation.setLoggedInUser(newLoggedInUser))
 }
 
 export const loadUserFromLocalStorage = (store) => {

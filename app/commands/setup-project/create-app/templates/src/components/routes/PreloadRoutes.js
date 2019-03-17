@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: "off" */
 import Loadable from 'react-loadable'
-import { RouteLoading } from '@dol/react-app-essentials'
+import { RouteLoading } from 'components/core/routing/route-loading/RouteLoading'
 //GeneratorToken: <next-import>
 
 export const preloadAllRoutes = () => {

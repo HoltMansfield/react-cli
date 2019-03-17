@@ -1,5 +1,5 @@
 import { useSubstate } from 'use-substate'
-import { foundationActions } from '@dol/react-app-essentials'
+import * as actions from 'redux/actions'
 
 
 export const useSpinner = () => {
@@ -8,7 +8,7 @@ export const useSpinner = () => {
   })
 
   const setShowSpinner = (newShowSpinnerValue) => {
-    dispatch(foundationActions.setShowSpinner(newShowSpinnerValue))
+    dispatch(actions.foundation.setShowSpinner(newShowSpinnerValue))
   }
 
   return { showSpinner, setShowSpinner }

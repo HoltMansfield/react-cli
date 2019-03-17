@@ -1,5 +1,5 @@
 import { useSubstate } from 'use-substate'
-import { foundationActions } from '@dol/react-app-essentials'
+import * as actions from 'redux/actions'
 
 
 const useSelectedLanguage = () => {
@@ -8,7 +8,7 @@ const useSelectedLanguage = () => {
   })
 
   const setSelectedLanguage = (newSelectedLanguage) => {
-    dispatch(foundationActions.setSelectedLanguage(newSelectedLanguage))
+    dispatch(actions.foundation.setSelectedLanguage(newSelectedLanguage))
   }
 
   return { selectedLanguage, setSelectedLanguage }

@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux'
 
-// reducers from npm
-import { foundationReducer as foundation } from '@dol/react-app-essentials'
 // reducers from this project
-
+import { foundation } from './foundation/foundation'
 // end of reducers from this project
 
 

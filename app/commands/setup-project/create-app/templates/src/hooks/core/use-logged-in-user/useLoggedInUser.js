@@ -1,5 +1,6 @@
 import { useSubstate } from 'use-substate'
-import { foundationActions, useRouter } from '@dol/react-app-essentials'
+import { useRouter } from 'hooks/core/use-router/useRouter'
+import * as actions from 'redux/actions'
 
 
 const useLoggedInUser = () => {
@@ -9,7 +10,7 @@ const useLoggedInUser = () => {
   })
 
   const setLoggedInUser = (newLoggedInUser) => {
-    dispatch(foundationActions.setLoggedInUser(newLoggedInUser))
+    dispatch(actions.foundation.setLoggedInUser(newLoggedInUser))
   }
 
   const logout = () => {

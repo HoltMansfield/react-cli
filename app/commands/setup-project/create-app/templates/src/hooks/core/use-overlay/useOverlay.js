@@ -1,5 +1,5 @@
 import { useSubstate } from 'use-substate'
-import { foundationActions } from '@dol/react-app-essentials'
+import * as actions from 'redux/actions'
 
 
 export const useOverlay = () => {
@@ -8,7 +8,7 @@ export const useOverlay = () => {
   })
 
   const setShowOverlay = (newShowOverlayValue) => {
-    dispatch(foundationActions.setShowOverlay(newShowOverlayValue))
+    dispatch(actions.foundation.setShowOverlay(newShowOverlayValue))
   }
 
   return { showOverlay, setShowOverlay }
