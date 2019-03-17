@@ -1,0 +1,6 @@
+{
+  "api.genericError": "An API error has occurred",
+  "react-app-essentials.404Page.title": "404: Page Not Found",
+  "react-app-essentials.ErrorPage.errorDetails": "Error Details:",
+  "react-app-essentials.ErrorPage.title": "Something went wrong"
+}

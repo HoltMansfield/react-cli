@@ -1,0 +1,22 @@
+[
+  {
+    "id": "react-app-essentials.ErrorPage.title",
+    "defaultMessage": "Something went wrong",
+    "filepath": "src/components/App.js"
+  },
+  {
+    "id": "react-app-essentials.ErrorPage.errorDetails",
+    "defaultMessage": "Error Details:",
+    "filepath": "src/components/App.js"
+  },
+  {
+    "id": "react-app-essentials.404Page.title",
+    "defaultMessage": "404: Page Not Found",
+    "filepath": ""
+  },
+  {
+    "id": "api.genericError",
+    "defaultMessage": "An API error has occurred",
+    "filepath": ""
+  }
+]
