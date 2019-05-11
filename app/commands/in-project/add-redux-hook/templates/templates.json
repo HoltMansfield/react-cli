@@ -1,0 +1,10 @@
+[
+  {
+    "templatePath": "/new-hook.js",
+    "destinationPath": "src/hooks/redux/<%= reducerNameSnakeCase %>/<%= hookNameSnakeCase %>/<%= hookName %>.js"
+  },
+  {
+    "templatePath": "/new-hook.spec.js",
+    "destinationPath": "src/hooks/redux/<%= reducerNameSnakeCase %>/<%= hookNameSnakeCase %>/<%= hookName %>.spec.js"
+  }
+]

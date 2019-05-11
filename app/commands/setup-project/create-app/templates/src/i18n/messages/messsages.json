@@ -1,16 +1,16 @@
 [
   {
-    "id": "react-app-essentials.ErrorPage.title",
+    "id": "errorPage.title",
     "defaultMessage": "Something went wrong",
     "filepath": "src/components/App.js"
   },
   {
-    "id": "react-app-essentials.ErrorPage.errorDetails",
+    "id": "errorPage.errorDetails",
     "defaultMessage": "Error Details:",
     "filepath": "src/components/App.js"
   },
   {
-    "id": "react-app-essentials.404Page.title",
+    "id": "404Page.title",
     "defaultMessage": "404: Page Not Found",
     "filepath": ""
   },

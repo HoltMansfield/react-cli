@@ -9,7 +9,6 @@ const { useGlobalStyle } = require('./useGlobalStyle')
 
 afterEach(() => {
   //td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('returns expected intial value', () => {

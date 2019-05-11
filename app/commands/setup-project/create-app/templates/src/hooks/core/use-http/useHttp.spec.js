@@ -38,12 +38,17 @@ const { useHttp } = require('./useHttp')
 
 // some basic var shared by all tests
 const apiUrl = 'IcanHazData.api.com'
-const url = '/tanks'
+const url = '/movies'
 
+beforeEach(() => {
+  td.when(configDouble.getConfig())
+    .thenReturn({
+      apiUrl
+    })
+})
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('get() shows and hides overlay by default', async () => {
@@ -53,10 +58,7 @@ test('get() shows and hides overlay by default', async () => {
     .thenResolve({
       data
     })
-  td.when(configDouble.getConfig())
-    .thenReturn({
-      apiUrl
-    })
+
   // render the hook in an unseen component
   const { result } = renderHook(() => useHttp())
 
@@ -81,10 +83,7 @@ test('get() does not show and hide overlay when useOverlay=false', async () => {
     .thenResolve({
       data
     })
-  td.when(configDouble.getConfig())
-    .thenReturn({
-      apiUrl
-    })
+
   // render the hook in an unseen component
   const { result } = renderHook(() => useHttp())
 
@@ -107,47 +106,37 @@ test('get() displays error on catch()', async () => {
   const expectedError = new Error(expectedErrorMessage)
   const messageId = 'api.getTanks.failed'
   const defaultMessage = 'An API error has occurred'
-  const dolError = {
+  const errorInstance = {
     messageId,
     defaultMessage
   }
 
   td.when(axiosDouble.get(td.matchers.anything()))
     .thenReturn(Promise.reject(expectedError))
-  td.when(configDouble.getConfig())
-    .thenResolve({
-      apiUrl
-    })
 
   const { get } = useHttp()
 
   try {
 
-    actual = await get(url, { dolError, useOverlay: false })
+    actual = await get(url, { errorInstance, useOverlay: false })
   } catch (e) {
     expect(e).toBe(expectedError)
     td.verify(handleError({
       messageId,
       defaultMessage,
       error: expectedError,
-      data: { source: "useHttp.get", url: "undefined//tanks"}
+      data: { source: "useHttp.get", url: "undefined//movies"}
     }))
   }
 })
 
 // react-hooks-testing-library somehow swallows errors, so we call this hook as vanilla function
 test('get() displays DEFAULT error on catch()', async () => {
-  const data = { expected: 'data' }
   const expectedErrorMessage = 'if-at-first-you-dont-succeed'
   const expectedError = new Error(expectedErrorMessage)
 
   td.when(axiosDouble.get(td.matchers.anything()))
     .thenReturn(Promise.reject(expectedError))
-
-  td.when(configDouble.getConfig())
-    .thenResolve({
-      apiUrl
-    })
 
   const { get } = useHttp()
 
@@ -160,7 +149,7 @@ test('get() displays DEFAULT error on catch()', async () => {
       messageId: "api.genericError",
       defaultMessage: "An error occurred while fetching tank data",
       error: expectedError,
-      data: { source: "useHttp.get", url: "undefined//tanks"}
+      data: { source: "useHttp.get", url: "undefined//movies"}
     }))
   }
 })
@@ -168,14 +157,12 @@ test('get() displays DEFAULT error on catch()', async () => {
 test('post() calls axios post with expected data', async () => {
   const data = { expected: 'data' }
   const requestData = { request: 'data' }
+
   td.when(axiosDouble.post(`${apiUrl}/${url}`, requestData))
     .thenResolve({
       data
     })
-  td.when(configDouble.getConfig())
-    .thenReturn({
-      apiUrl
-    })
+
   // render the hook in an unseen component
   const { result } = renderHook(() => useHttp())
 
@@ -187,14 +174,12 @@ test('post() calls axios post with expected data', async () => {
 test('put() calls axios put with expected data', async () => {
   const data = { expected: 'data' }
   const requestData = { request: 'data' }
+
   td.when(axiosDouble.put(`${apiUrl}/${url}`, requestData))
     .thenResolve({
       data
     })
-  td.when(configDouble.getConfig())
-    .thenReturn({
-      apiUrl
-    })
+
   // render the hook in an unseen component
   const { result } = renderHook(() => useHttp())
 
@@ -205,14 +190,12 @@ test('put() calls axios put with expected data', async () => {
 
 test('delete() calls axios delete with expected url', async () => {
   const data = { expected: 'data' }
+
   td.when(axiosDouble.delete(`${apiUrl}/${url}`))
     .thenResolve({
       data
     })
-  td.when(configDouble.getConfig())
-    .thenReturn({
-      apiUrl
-    })
+
   // render the hook in an unseen component
   const { result } = renderHook(() => useHttp())
 

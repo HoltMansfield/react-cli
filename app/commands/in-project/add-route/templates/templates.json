@@ -1,0 +1,18 @@
+[
+  {
+    "templatePath": "/new-route.jsx",
+    "destinationPath": "src/components/routes/<%= urlSnakeCase %>/<%= urlPascalCase %>.jsx"
+  },
+  {
+    "templatePath": "/new-hook.js",
+    "destinationPath": "src/components/routes/<%= urlSnakeCase %>/use<%= urlPascalCase %>Logic.js"
+  },
+  {
+    "templatePath": "/new-hook.spec.js",
+    "destinationPath": "src/components/routes/<%= urlSnakeCase %>/use<%= urlPascalCase %>Logic.spec.js"
+  },
+  {
+    "templatePath": "/new-styled-components.js",
+    "destinationPath": "src/components/routes/<%= urlSnakeCase %>/styled.js"
+  }
+]

@@ -10,13 +10,12 @@ const { useTranslateMessage } = require('./useTranslateMessage')
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('returns default value when app set to english', () => {
   const messageId = 'api.gettingData.Tanks'
   const defaultMessage = 'An error occurred while getting tank data'
-  const dolError = {
+  const errorInstance = {
     messageId,
     defaultMessage,
   }
@@ -34,14 +33,14 @@ test('returns default value when app set to english', () => {
   // render the hook in an unseen component
   const { result } = renderHook(() => useTranslateMessage())
 
-  const translatedResult = result.current.translateMessage(dolError)
-  expect(translatedResult).toEqual(dolError.defaultMessage)
+  const translatedResult = result.current.translateMessage(errorInstance)
+  expect(translatedResult).toEqual(errorInstance.defaultMessage)
 })
 
 test('returns translated value when app set to non-english language', () => {
   const messageId = 'expected.message'
   const defaultMessage = 'Expected message details'
-  const dolError = {
+  const errorInstance = {
     messageId,
     defaultMessage,
   }
@@ -60,6 +59,6 @@ test('returns translated value when app set to non-english language', () => {
   // render the hook in an unseen component
   const { result } = renderHook(() => useTranslateMessage())
 
-  const translatedResult = result.current.translateMessage(dolError)
+  const translatedResult = result.current.translateMessage(errorInstance)
   expect(translatedResult).toEqual(messages['expected.message'])
 })

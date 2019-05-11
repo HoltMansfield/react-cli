@@ -18,7 +18,6 @@ const { useRouter } = require('./useRouter')
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('returns history object from the router context', () => {

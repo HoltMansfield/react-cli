@@ -36,7 +36,6 @@ const { useHandleError } = require('./useHandleError')
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('returns expected intial value', () => {
@@ -44,7 +43,7 @@ test('returns expected intial value', () => {
   const defaultMessage = 'An error occurred while getting tank data'
   const jsError = new Error('mock-error')
   const data = { error: 'data' }
-  const dolError = {
+  const errorInstance = {
     messageId,
     defaultMessage,
     data,
@@ -52,14 +51,14 @@ test('returns expected intial value', () => {
   }
   const expectedTranslation = 'translated'
 
-  td.when(translateMessage(dolError))
+  td.when(translateMessage(errorInstance))
     .thenReturn(expectedTranslation)
 
   // render the hook in an unseen component
   const { result } = renderHook(() => useHandleError())
 
-  result.current.handleError(dolError)
+  result.current.handleError(errorInstance)
 
-  td.verify(captureException(dolError.error, dolError.data))
+  td.verify(captureException(errorInstance.error, errorInstance.data))
   td.verify(error(expectedTranslation))
 })

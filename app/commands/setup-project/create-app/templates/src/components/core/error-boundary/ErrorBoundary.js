@@ -4,11 +4,11 @@ import { injectIntl, defineMessages } from 'react-intl'
 
 const messages = defineMessages({
   title: {
-    id: 'react-app-essentials.ErrorPage.title',
+    id: 'errorPage.title',
     defaultMessage: 'Something went wrong'
   },
   errorDetails: {
-    id: 'react-app-essentials.ErrorPage.errorDetails',
+    id: 'errorPage.errorDetails',
     defaultMessage: 'Error Details:'
   }
 })

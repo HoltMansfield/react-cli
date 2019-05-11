@@ -18,8 +18,6 @@ td.replace('@material-ui/core/styles', materialDouble)
 const { useTheme } = require('./useTheme')
 
 afterEach(() => {
-  // Unmounts any React trees that were mounted with renderHook
-  cleanup()
   // reset all test doubles
   td.reset()
 })

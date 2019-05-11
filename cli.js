@@ -3,6 +3,7 @@
 const rek = require('rekuire')
 const program = require('commander')
 const { addSetupProjectCommands } = rek('add-setup-project-commands')
+const { addInProjectCommands } = rek('add-in-project-commands')
 
 // set some meta-data
 program
@@ -13,6 +14,7 @@ program
 
 // wire up commands
 addSetupProjectCommands(program)
+addInProjectCommands(program)
 
 // listen for user input
 program.parse(process.argv)

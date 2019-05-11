@@ -5,7 +5,7 @@ export const useTranslateMessage = () => {
   const { languageState } = useLanguageImporter()
 
   const translateMessage = (dolObject) => {
-    // dolObject is: { messageId, defaultMessage } implemented by dolError and dolMessage
+    // dolObject is: { messageId, defaultMessage } implemented by errorInstance and dolMessage
     if (languageState.loadedLanguage === 'en') {
       return dolObject.defaultMessage
     }

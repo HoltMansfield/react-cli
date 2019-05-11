@@ -53,9 +53,11 @@ const addNpmPackages = async () => {
     'axios',
     'immer',
     'flexbox-react',
+    'formik',
     'moment',
     '@material-ui/core',
     '@material-ui/icons',
+    'material-ui-pickers',
     'styled-components',
     'redux-devtools-extension',
     'react-redux', // Do we need this???
@@ -66,15 +68,18 @@ const addNpmPackages = async () => {
     'react-router@next',
     'use-substate',
     'react-toastify',
-    '@sentry/browser'
+    '@sentry/browser',
+    'yup'
   ]
   const devPackageList = [
     'react-testing-library',
     'react-hooks-testing-library',
     'react-intl.macro',
     'react-intl-translations-manager',
+    'react-test-renderer',
     'testdouble-jest',
-    'testdouble'
+    'testdouble',
+    'node-cipher'
   ]
 
   try {
@@ -110,12 +115,12 @@ const addNpmScripts = async () => {
     }, root)
     await packageDotJson.addScript({
       name: 'encrypt-config',
-      value: 'node ./scripts/encrypt.js',
+      value: 'node ./src/config/scripts/encrypt.js',
       docValue: '(*** check README.md ***) This command encrypts the config'
     }, root)
     await packageDotJson.addScript({
       name: 'decrypt-config',
-      value: 'node ./scripts/decrypt.js',
+      value: 'node ./src/config/scripts/decrypt.js',
       docValue: '(*** check README.md ***) This command decrypts the config'
     }, root)
   } catch (e) {
@@ -125,6 +130,16 @@ const addNpmScripts = async () => {
 
 const updateNpmScripts = () => {
   return packageDotJson.updateScript('test','REACT_APP_ENV=jest react-scripts test', root)
+}
+
+const updateNpmSections = () => {
+  const newValue = {
+    extends: "react-app",
+    globals: {
+      td: true
+    }
+  }
+  return packageDotJson.updateSection('eslintConfig', newValue)
 }
 
 const createAppFromCRA = async () => {

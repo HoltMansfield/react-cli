@@ -10,7 +10,6 @@ const { useSentry } = require('./useSentry')
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('initializeSentry calls SentryInit with value from config', () => {

@@ -15,9 +15,9 @@ const setDefaults = (options) => {
     options.useOverlay = true
   }
 
-  if(!options.hasOwnProperty('dolError')) {
+  if(!options.hasOwnProperty('errorInstance')) {
     // default to generic api error
-    options.dolError = {
+    options.errorInstance = {
       messageId: 'api.genericError',
       defaultMessage: 'An error occurred while fetching tank data'
     }
@@ -33,12 +33,12 @@ export const useHttp = (url, _options) => {
   const config = getConfig()
 
   const handleHttpError = (error, data, options) => {
-    const dolError = {
-      ...options.dolError,
+    const errorInstance = {
+      ...options.errorInstance,
       error,
       data
     }
-    handleError(dolError)
+    handleError(errorInstance)
   }
 
   const showSpinnerAndOverlay = (options) => {

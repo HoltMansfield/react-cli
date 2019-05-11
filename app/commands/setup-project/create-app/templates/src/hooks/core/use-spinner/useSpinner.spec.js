@@ -11,7 +11,6 @@ const { useSpinner } = require('./useSpinner')
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('showSpinner contains expected value from state', () => {

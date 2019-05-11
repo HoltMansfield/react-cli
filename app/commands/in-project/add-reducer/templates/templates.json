@@ -1,0 +1,18 @@
+[
+  {
+    "templatePath": "/actions/new-actions.js",
+    "destinationPath": "src/redux/actions/<%= reducerFileName %>/<%= reducerFileName %>.js"
+  },
+  {
+    "templatePath": "/actions/new-actions.spec.js",
+    "destinationPath": "src/redux/actions/<%= reducerFileName %>/<%= reducerFileName %>.spec.js"
+  },
+  {
+    "templatePath": "/reducers/new-reducer.js",
+    "destinationPath": "src/redux/reducers/<%= reducerFileName %>/<%= reducerFileName %>.js"
+  },
+  {
+    "templatePath": "/reducers/new-reducer.spec.js",
+    "destinationPath": "src/redux/reducers/<%= reducerFileName %>/<%= reducerFileName %>.spec.js"
+  }
+]

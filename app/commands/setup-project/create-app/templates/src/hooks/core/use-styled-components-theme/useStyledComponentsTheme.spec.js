@@ -24,8 +24,6 @@ const materialDouble = {
 const { useStyledComponentsTheme } = require('./useStyledComponentsTheme')
 
 afterEach(() => {
-  // Unmounts any React trees that were mounted with renderHook
-  cleanup()
   // reset all test doubles
   td.reset()
 })

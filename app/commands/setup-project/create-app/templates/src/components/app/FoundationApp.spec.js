@@ -4,13 +4,6 @@ import { sleep } from 'setupTests'
 
 
 // testdoubles
-const raeDouble = {
-  useRouter: td.func(),
-  RouteLoading: {},
-  ErrorBoundary: ({children}) => (children),
-  useScrollBack: () => {}
-}
-td.replace('@dol/react-app-essentials', raeDouble)
 const useSubstateDouble = td.replace('use-substate')
 
 // useGlobalStyle
@@ -53,9 +46,6 @@ const { FoundationApp } = require('./FoundationApp')
 
 beforeEach(() => {
   td.reset()
-
-  td.when(raeDouble.useRouter())
-    .thenReturn({ history: {} })
 
   td.when(useSubstateDouble.useSubstate(td.matchers.anything()))
     .thenReturn([])

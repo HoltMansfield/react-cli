@@ -6,4 +6,4 @@ const sleep = (ms) => {
 export { sleep }
 
 global.td = require('testdouble')
-require('testdouble-jest')(td, jest) // td and jest are ambient?
+require('testdouble-jest')(td, jest) // td and jest are ambient

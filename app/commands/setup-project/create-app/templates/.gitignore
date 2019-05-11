@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# our decrypted config
-/config/config-secure.js
+# our decrypted config(s)
+/src/config/secure/local.js

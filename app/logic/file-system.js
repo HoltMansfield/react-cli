@@ -174,6 +174,24 @@ const alphabetizeReducerImports = (lines, leading, type) => {
   lines.splice(startIndex, 0, ...sorted)
 }
 
+const insertBelowGeneratorTag = (lines, generatorToken, newText) => {
+  const index = lines.findIndex(line => line.text === generatorToken)
+  // insert AFTER found index and thus BELOW
+  lines.splice(index, 0, {
+    tag: generatorToken,
+    text: newText
+  })
+}
+
+const insertAtGeneratorTag = (lines, generatorToken, newText) => {
+  const index = lines.findIndex(line => line.text.indexOf(generatorToken) !== -1)
+  // overwrite the line that has the token with new object
+  lines[index] = {
+    tag: generatorToken,
+    text: newText
+  }
+}
+
 module.exports = {
   deleteFile,
   writeFile,
@@ -185,5 +203,7 @@ module.exports = {
   alphabetizeExports,
   tagLine,
   alphabetizeImports,
-  alphabetizeReducerImports
+  alphabetizeReducerImports,
+  insertBelowGeneratorTag,
+  insertAtGeneratorTag
 }

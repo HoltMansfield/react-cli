@@ -11,7 +11,6 @@ const { useOverlay } = require('./useOverlay')
 
 afterEach(() => {
   td.reset() // resets all test doubles
-  cleanup() // Unmounts any React trees that were mounted with renderHook
 })
 
 test('showOverlay contains expected value from state', () => {
