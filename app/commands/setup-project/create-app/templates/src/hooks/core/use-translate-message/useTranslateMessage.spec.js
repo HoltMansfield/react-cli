@@ -13,8 +13,8 @@ afterEach(() => {
 })
 
 test('returns default value when app set to english', () => {
-  const messageId = 'api.gettingData.Tanks'
-  const defaultMessage = 'An error occurred while getting tank data'
+  const messageId = 'api.gettingData'
+  const defaultMessage = 'An error occurred while getting data'
   const errorInstance = {
     messageId,
     defaultMessage,

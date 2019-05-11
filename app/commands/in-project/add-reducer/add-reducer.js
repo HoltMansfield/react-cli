@@ -13,7 +13,6 @@ const seperator = projectPaths.getSeparator()
 
 
 const getTemplateData = (reducerName, reducerProperty) => {
-  // example values => reducerName: assets, reducerProperty: tanks
   const reducerPropertyPascalCase = strings.capitalizeFirstLetter(reducerProperty)
   const actionType = `SET_${strings.mapToUnderbarsAllCaps(reducerProperty)}`
 

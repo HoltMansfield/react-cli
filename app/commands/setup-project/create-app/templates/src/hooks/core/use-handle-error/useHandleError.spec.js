@@ -39,8 +39,8 @@ afterEach(() => {
 })
 
 test('returns expected intial value', () => {
-  const messageId = 'api.gettingData.Tanks'
-  const defaultMessage = 'An error occurred while getting tank data'
+  const messageId = 'api.gettingData.Widgets'
+  const defaultMessage = 'An error occurred while getting widget data'
   const jsError = new Error('mock-error')
   const data = { error: 'data' }
   const errorInstance = {

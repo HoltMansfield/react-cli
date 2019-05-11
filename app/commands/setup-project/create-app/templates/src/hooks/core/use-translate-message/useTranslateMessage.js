@@ -4,13 +4,13 @@ import { useLanguageImporter } from 'hooks/core/use-language-importer/useLanguag
 export const useTranslateMessage = () => {
   const { languageState } = useLanguageImporter()
 
-  const translateMessage = (dolObject) => {
-    // dolObject is: { messageId, defaultMessage } implemented by errorInstance and dolMessage
+  const translateMessage = (i18nObject) => {
+    // i18nObject is: { messageId, defaultMessage } implemented by errorInstance and i18nMessage
     if (languageState.loadedLanguage === 'en') {
-      return dolObject.defaultMessage
+      return i18nObject.defaultMessage
     }
 
-    return languageState.messages[dolObject.messageId]
+    return languageState.messages[i18nObject.messageId]
   }
 
   return {

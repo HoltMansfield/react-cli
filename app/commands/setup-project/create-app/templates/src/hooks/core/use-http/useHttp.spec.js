@@ -104,7 +104,7 @@ test('get() displays error on catch()', async () => {
   const data = { expected: 'data' }
   const expectedErrorMessage = 'if-at-first-you-dont-succeed'
   const expectedError = new Error(expectedErrorMessage)
-  const messageId = 'api.getTanks.failed'
+  const messageId = 'api.get.failed'
   const defaultMessage = 'An API error has occurred'
   const errorInstance = {
     messageId,
@@ -147,7 +147,7 @@ test('get() displays DEFAULT error on catch()', async () => {
     expect(e).toBe(expectedError)
     td.verify(handleError({
       messageId: "api.genericError",
-      defaultMessage: "An error occurred while fetching tank data",
+      defaultMessage: "An error occurred while fetching data",
       error: expectedError,
       data: { source: "useHttp.get", url: "undefined//movies"}
     }))

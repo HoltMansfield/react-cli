@@ -19,7 +19,7 @@ const setDefaults = (options) => {
     // default to generic api error
     options.errorInstance = {
       messageId: 'api.genericError',
-      defaultMessage: 'An error occurred while fetching tank data'
+      defaultMessage: 'An error occurred while fetching data'
     }
   }
 
