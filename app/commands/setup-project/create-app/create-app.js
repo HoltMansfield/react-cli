@@ -67,6 +67,7 @@ const addNpmPackages = async () => {
     'react-router-dom@next',
     'react-router@next',
     'use-substate',
+    'use-media',
     'react-toastify',
     '@sentry/browser',
     'yup'

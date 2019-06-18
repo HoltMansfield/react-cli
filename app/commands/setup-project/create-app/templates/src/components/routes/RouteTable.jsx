@@ -6,7 +6,7 @@ import { useScrollBack } from 'hooks/core/use-scroll-back/useScrollBack'
 import { NotFound } from 'components/core/routing/not-found/NotFound'
 import { RouteLoading } from 'components/core/routing/route-loading/RouteLoading'
 import { useLoggedInUser } from 'hooks/core/use-logged-in-user/useLoggedInUser'
-import { getConfig } from 'config/secure'
+import { getSecureConfig } from 'config/secure'
 import { preloadAllRoutes } from './PreloadRoutes'
 // import { AuthorizedRoute } from './AuthorizedRoute'
 const Login = Loadable({ loader: () => import('components/core/routing/login/Login'), loading: RouteLoading })
@@ -18,7 +18,7 @@ const ExampleComponent = () => {
     <div><Link to="/login">Login</Link></div>
   )
 }
-const config = getConfig()
+const config = getSecureConfig()
 
 function RouteTable () {
   const { history } = useRouter()

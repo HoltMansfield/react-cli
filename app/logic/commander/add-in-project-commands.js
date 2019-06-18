@@ -21,9 +21,9 @@ const addInProjectCommands = (program) => {
     .action((reducerName, reducerValue) => addReducer(reducerName, reducerValue))
 
   program
-    .command('add-reducer-value <reducerName> <reducerProperty>')
+    .command('add-reducer-property <reducerName> <reducerProperty>')
     .description('Add a reducer property and action to existing reducer and actions')
-    .action((reducerName, reducerProperty) => addReducerValue(reducerName, reducerProperty))
+    .action((reducerName, reducerProperty) => addReducerProperty(reducerName, reducerProperty))
 
   program
     .command('add-hook <hookName>')
