@@ -80,14 +80,14 @@ const getImportForType = (type) => {
 
 const getImports = () => {
   const types = getHashOfTypes()
-  const imports = []
+  const imports = ['SubmitButton']
 
   Object.keys(types).forEach(function(key) {
     // types is a hash with types as keys
     imports.push(getImportForType(types[key]))
   })
 
-  return `import { ${imports.join(', ')} } from '@anova/forms'`
+  return `import { ${imports.join(', ')} } from 'components'`
 }
 
 const updateFormName = (lines, templateData) => {
@@ -115,7 +115,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-    </Flex>`
+        </Flex>`
     case 'boolean':
       return `      <Flex>
         <FormikCheckbox
@@ -123,7 +123,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
     case 'checkboxes':
       return `      <Flex>
         <FormikCheckboxArray
@@ -132,7 +132,7 @@ const getField = (name, fieldDefinition) => {
           checkboxes={ see instructions in packages/forms/src/package/components/forms/FormikCheckboxArray.jsx }
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
     case 'radioButtons':
       return `      <Flex>
         <FormikRadioButtons
@@ -141,7 +141,7 @@ const getField = (name, fieldDefinition) => {
           formikProps={props}
           options={['Your', 'Options', 'Here']}
         />
-      </Flex>`
+        </Flex>`
     case 'select':
       return `      <Flex>
         <FormikSelect
@@ -151,7 +151,7 @@ const getField = (name, fieldDefinition) => {
           items={ see instructions in packages/forms/src/package/components/forms/FormikSelect.jsx }
           width={300}
         />
-      </Flex>`
+        </Flex>`
     case 'yesNo':
       return `      <Flex>
         <FormikYesNo
@@ -159,7 +159,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
       case 'date':
         return `      <Flex>
         <FormikDatePicker
@@ -167,7 +167,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
       case 'time':
         return `      <Flex>
         <FormikTimePicker
@@ -175,7 +175,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
       default:
         throw new Error(`${fieldDefinition.type} not found in getField`)
   }

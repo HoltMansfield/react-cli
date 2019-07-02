@@ -2,17 +2,25 @@ import React from 'react'
 import Flex from 'flexbox-react'
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
-import { FormikTextField, SubmitButton } from 'components'
 //GeneratorToken: <next-import>
 // import { } from './styled'
 
 
 function <%= formNamePascalCase %>Raw (props) {
-  const { values } = props
+  const { values, onSubmit } = props
 
   return (
     <Flex flexDirection="column">
       //GeneratorToken: <fields>
+      <Flex>
+        <SubmitButton
+          onSubmit={() => onSubmit(values)}
+          values={values}
+          validationSchema={validationSchema}
+        >
+          Save
+        </SubmitButton>
+      </Flex>
     </Flex>
   )
 }
