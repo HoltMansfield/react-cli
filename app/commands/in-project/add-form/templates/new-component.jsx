@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 
 function <%= formNamePascalCase %>Raw (props) {
   const { values, onSubmit } = props
+  //GeneratorToken: <next-options>
 
   return (
     <Flex flexDirection="column">
