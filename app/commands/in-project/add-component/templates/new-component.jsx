@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex } from 'components'
+import Flex from 'flexbox-react'
 import { use<%= componentNamePascalCase %>Logic } from './use<%= componentNamePascalCase %>Logic'
 // import { } from './styled'
 
