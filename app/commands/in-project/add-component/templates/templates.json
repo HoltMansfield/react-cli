@@ -1,0 +1,18 @@
+[
+  {
+    "templatePath": "/new-component.jsx",
+    "destinationPath": "src/components/<%= componentNameSnakeCase %>/<%= componentNamePascalCase %>.jsx"
+  },
+  {
+    "templatePath": "/new-hook.js",
+    "destinationPath": "src/components/<%= componentNameSnakeCase %>/use<%= componentNamePascalCase %>Logic.js"
+  },
+  {
+    "templatePath": "/new-hook.spec.js",
+    "destinationPath": "src/components/<%= componentNameSnakeCase %>/use<%= componentNamePascalCase %>Logic.spec.js"
+  },
+  {
+    "templatePath": "/new-styled-components.js",
+    "destinationPath": "src/components/<%= componentNameSnakeCase %>/styled.js"
+  }
+]

@@ -5,7 +5,7 @@ const { addReducerProperty } = rek('add-reducer-property')
 const { addHook } = rek('add-hook')
 const { addForm } = rek('add-form')
 const { addReduxHook } = rek('add-redux-hook')
-// const { addComponent } = rek('add-component')
+const { addComponent } = rek('add-component')
 const { addSimpleComponent } = rek('add-simple-component')
 
 
@@ -42,12 +42,12 @@ const addInProjectCommands = (program) => {
       return addReduxHook(hookName, reducerName, reducerProperty)
     })
 
-  // program
-  //   .command('add-component <componentName>')
-  //   .description('Create a component with a companion hook and styled components')
-  //   .action((componentName) => {
-  //     return addComponent(componentName)
-  //   })
+  program
+    .command('add-component <componentName>')
+    .description('Create a component with a companion hook and styled components')
+    .action((componentName) => {
+      return addComponent(componentName)
+    })
 
   program
     .command('add-simple-component <componentName>')

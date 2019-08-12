@@ -1,4 +1,4 @@
-import { renderHook, cleanup } from 'react-hooks-testing-library'
+import { renderHook } from 'react-hooks-testing-library'
 import { sleep } from 'setupTests'
 
 
@@ -104,6 +104,7 @@ test('get() displays error on catch()', async () => {
   const data = { expected: 'data' }
   const expectedErrorMessage = 'if-at-first-you-dont-succeed'
   const expectedError = new Error(expectedErrorMessage)
+  const expectedUrl = `${apiUrl}//movies`
   const messageId = 'api.get.failed'
   const defaultMessage = 'An API error has occurred'
   const errorInstance = {
@@ -117,7 +118,6 @@ test('get() displays error on catch()', async () => {
   const { get } = useHttp()
 
   try {
-
     actual = await get(url, { errorInstance, useOverlay: false })
   } catch (e) {
     expect(e).toBe(expectedError)
@@ -125,7 +125,7 @@ test('get() displays error on catch()', async () => {
       messageId,
       defaultMessage,
       error: expectedError,
-      data: { source: "useHttp.get", url: "undefined//movies"}
+      data: { source: "useHttp.get", url: expectedUrl }
     }))
   }
 })
@@ -134,6 +134,7 @@ test('get() displays error on catch()', async () => {
 test('get() displays DEFAULT error on catch()', async () => {
   const expectedErrorMessage = 'if-at-first-you-dont-succeed'
   const expectedError = new Error(expectedErrorMessage)
+  const expectedUrl = `${apiUrl}//movies`
 
   td.when(axiosDouble.get(td.matchers.anything()))
     .thenReturn(Promise.reject(expectedError))
@@ -141,7 +142,6 @@ test('get() displays DEFAULT error on catch()', async () => {
   const { get } = useHttp()
 
   try {
-
     actual = await get(url, { useOverlay: false })
   } catch (e) {
     expect(e).toBe(expectedError)
@@ -149,7 +149,7 @@ test('get() displays DEFAULT error on catch()', async () => {
       messageId: "api.genericError",
       defaultMessage: "An error occurred while fetching data",
       error: expectedError,
-      data: { source: "useHttp.get", url: "undefined//movies"}
+      data: { source: "useHttp.get", url: expectedUrl }
     }))
   }
 })

@@ -73,6 +73,8 @@ const getImportForType = (type) => {
       return 'FormikDatePicker'
     case 'time':
       return 'FormikTimePicker'
+    case 'toggle':
+      return 'FormikToggle'
     default:
       throw new Error(`${fieldDefinition.type} not found in getImportForType`)
   }
@@ -80,14 +82,28 @@ const getImportForType = (type) => {
 
 const getImports = () => {
   const types = getHashOfTypes()
-  const imports = []
+  const imports = ['SubmitButton']
 
   Object.keys(types).forEach(function(key) {
     // types is a hash with types as keys
     imports.push(getImportForType(types[key]))
   })
 
-  return `import { ${imports.join(', ')} } from '@anova/forms'`
+  return `import { ${imports.join(', ')} } from 'components'`
+}
+
+const getOptions = () => {
+  const options = []
+
+  Object.keys(nextForm).forEach(function(key) {
+    if (nextForm[key].options) {
+      const optionsText = `\tconst ${key}Options = ${JSON.stringify(nextForm[key].options, null, 2)}`
+      // drop the quotes around property names
+      options.push(optionsText.replace(/\"([^(\")"]+)\":/g,"$1:"))
+    }
+  })
+
+  return options.join('\n')
 }
 
 const updateFormName = (lines, templateData) => {
@@ -115,7 +131,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-    </Flex>`
+        </Flex>`
     case 'boolean':
       return `      <Flex>
         <FormikCheckbox
@@ -123,43 +139,43 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
     case 'checkboxes':
       return `      <Flex>
         <FormikCheckboxArray
           id="${name}"
           label="${label}"
-          checkboxes={ see instructions in packages/forms/src/package/components/forms/FormikCheckboxArray.jsx }
+          checkboxes={${name}Options}
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
     case 'radioButtons':
       return `      <Flex>
         <FormikRadioButtons
           id="${name}"
           label="${label}"
           formikProps={props}
-          options={['Your', 'Options', 'Here']}
+          options={${name}Options}
         />
-      </Flex>`
+        </Flex>`
     case 'select':
       return `      <Flex>
         <FormikSelect
           id="${name}"
           label="${label}"
           formikProps={props}
-          items={ see instructions in packages/forms/src/package/components/forms/FormikSelect.jsx }
+          items={${name}Options}
           width={300}
         />
-      </Flex>`
-    case 'yesNo':
+        </Flex>`
+    case 'toggle':
       return `      <Flex>
-        <FormikYesNo
+        <FormikToggle
           id="${name}"
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
       case 'date':
         return `      <Flex>
         <FormikDatePicker
@@ -167,7 +183,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
       case 'time':
         return `      <Flex>
         <FormikTimePicker
@@ -175,7 +191,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-      </Flex>`
+        </Flex>`
       default:
         throw new Error(`${fieldDefinition.type} not found in getField`)
   }
@@ -205,7 +221,7 @@ const getValidationRule = (name, fieldDefinition) => {
       return `  ${name}: Yup.string().required('${label} is required'),`
     case 'select':
       return `  ${name}: Yup.string().required('${label} is required'),`
-    case 'yesNo':
+    case 'toggle':
       return `  ${name}: Yup.boolean().required('${label} is required'),`
     case 'date':
       return `  ${name}: Yup.date().required('${label} is required'),`
@@ -241,7 +257,7 @@ const getInitialValue = (name, type) => {
       return `      ${name}: null,`
     case 'select':
       return `      ${name}: '',`
-    case 'yesNo':
+    case 'toggle':
       return `      ${name}: '',`
     case 'date':
       return `      ${name}: null,`
@@ -272,6 +288,9 @@ const buildForm = async (templateData) => {
 
   const importText = getImports()
   fileSystem.insertAtGeneratorTag(lines, '//GeneratorToken: <next-import>', importText)
+
+  const optionsText = getOptions()
+  fileSystem.insertAtGeneratorTag(lines, '//GeneratorToken: <next-options>', optionsText)
 
   const fields = getFields()
   fileSystem.insertAtGeneratorTag(lines, '//GeneratorToken: <fields>', fields)
@@ -326,7 +345,7 @@ const addForm = async (formName) => {
     updateTemplates(templateData)
     await createFolders(templateData)
     await buildForm(templateData)
-    await addTemplates(templateData)
+    // await addTemplates(templateData)
   } catch (e) {
     messages.handleError(e, 'addTemplates')
   }
