@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-// reducers from this project
+// reducers
 import { foundation } from './foundation/foundation'
 // end of reducers from this project
 

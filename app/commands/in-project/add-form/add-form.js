@@ -131,7 +131,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-        </Flex>`
+      </Flex>`
     case 'boolean':
       return `      <Flex>
         <FormikCheckbox
@@ -139,7 +139,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-        </Flex>`
+      </Flex>`
     case 'checkboxes':
       return `      <Flex>
         <FormikCheckboxArray
@@ -148,7 +148,7 @@ const getField = (name, fieldDefinition) => {
           checkboxes={${name}Options}
           formikProps={props}
         />
-        </Flex>`
+      </Flex>`
     case 'radioButtons':
       return `      <Flex>
         <FormikRadioButtons
@@ -157,7 +157,7 @@ const getField = (name, fieldDefinition) => {
           formikProps={props}
           options={${name}Options}
         />
-        </Flex>`
+      </Flex>`
     case 'select':
       return `      <Flex>
         <FormikSelect
@@ -167,7 +167,7 @@ const getField = (name, fieldDefinition) => {
           items={${name}Options}
           width={300}
         />
-        </Flex>`
+      </Flex>`
     case 'toggle':
       return `      <Flex>
         <FormikToggle
@@ -175,7 +175,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-        </Flex>`
+      </Flex>`
       case 'date':
         return `      <Flex>
         <FormikDatePicker
@@ -183,7 +183,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-        </Flex>`
+      </Flex>`
       case 'time':
         return `      <Flex>
         <FormikTimePicker
@@ -191,7 +191,7 @@ const getField = (name, fieldDefinition) => {
           label="${label}"
           formikProps={props}
         />
-        </Flex>`
+      </Flex>`
       default:
         throw new Error(`${fieldDefinition.type} not found in getField`)
   }

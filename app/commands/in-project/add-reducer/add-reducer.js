@@ -126,14 +126,14 @@ const updateActionsIndex = async (templateData) => {
     await fileSystem.writeFile(path, data)
     messages.success('Updated /redux/actions/index.js')
   } catch (e) {
-    messages.handleError(e, 'updateRouteTable')
+    messages.handleError(e, 'updateActionsIndex')
   }
 }
 
 // find the line where we want to insert the import for new import and tag with 'new-import'
 const tagIndexOfReducerImport = (lines) => {
   const indexOf = lines.findIndex(line => {
-    return line.text.trim() === '// end of reducers from this project'
+    return line.text.trim() === '// end of reducers'
   })
 
   lines[indexOf - 1].tag = 'new-import'
@@ -183,7 +183,7 @@ const updateReducersIndex = async (templateData) => {
     await fileSystem.writeFile(path, data)
     messages.success('Updated /redux/actions/index.js')
   } catch (e) {
-    messages.handleError(e, 'updateRouteTable')
+    messages.handleError(e, 'updateReducersIndex')
   }
 }
 

@@ -131,7 +131,7 @@ const alphabetizeImports = (lines, leading) => {
 /* eslint max-statements: "off" */
 const alphabetizeReducerImports = (lines, leading, type) => {
   let startIndex = lines.findIndex(
-    line => line.text.indexOf('// reducers from this project') !== -1
+    line => line.text.indexOf('// reducers') !== -1
   )
   let endIndex = lines.findIndex(
     line => line.text.indexOf('// end of reducers from this project') !== -1
