@@ -49,7 +49,6 @@ const addNpmPackages = async () => {
   const seperator = projectPaths.getSeparator()
   const packageList = [
     'animate-css-styled-components',
-    'auth0-js',
     'axios',
     'immer',
     'flexbox-react',
