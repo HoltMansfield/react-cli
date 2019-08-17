@@ -1,21 +1,6 @@
 import { useState, useEffect } from 'react'
-import { addLocaleData } from 'react-intl'
-import * as ar from 'react-intl/locale-data/ar'
 import { useSelectedLanguage } from 'hooks/core/use-selected-language/useSelectedLanguage'
 
-
-function isIterable(obj) {
-  // checks for null and undefined
-  if (obj == null) {
-    return false;
-  }
-  return typeof obj[Symbol.iterator] === 'function';
-}
-
-if (isIterable(ar)) {
-  //ar is not iterable when running unit tests
-  addLocaleData([...ar])
-}
 
 setTimeout(() => {
   import('i18n/locales/ar.json')

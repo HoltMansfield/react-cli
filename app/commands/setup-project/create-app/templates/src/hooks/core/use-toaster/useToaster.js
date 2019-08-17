@@ -6,7 +6,12 @@ export const useToaster = () => {
     toast.error(message)
   }
 
+  const success = (message) => {
+    toast.success(message)
+  }
+
   return {
-    error
+    error,
+    success
   }
 }
