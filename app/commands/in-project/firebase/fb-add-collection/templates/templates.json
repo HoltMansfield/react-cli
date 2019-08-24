@@ -1,0 +1,6 @@
+[
+  {
+    "templatePath": "/new-use-collection.jsx",
+    "destinationPath": "src/hooks/core/firebase/collections/use-<%= collectionNameSnakeCase %>/use<%= collectionNamePascalCase %>.js"
+  }
+]

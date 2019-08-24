@@ -1,7 +1,7 @@
 /* eslint max-len: "off" */
 const rek = require('rekuire')
 const strings = rek('strings')
-const messages = rek('messages')
+const messages = rek('console-messages')
 const projectPaths = rek('project-paths')
 const fileSystem = rek('file-system')
 

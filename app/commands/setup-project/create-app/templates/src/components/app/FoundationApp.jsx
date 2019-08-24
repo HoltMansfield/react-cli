@@ -1,3 +1,4 @@
+/* eslint react-hooks/exhaustive-deps: "off" */
 import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { MuiThemeProvider } from '@material-ui/core/styles'

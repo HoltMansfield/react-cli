@@ -22,7 +22,7 @@ function RouteTable () {
   return (
     <Switch>
       {/* Default Route */}
-      <Route exact path="/" component={ExampleComponent} /> } />
+      <Route exact path="/" component={() => <div>Home page</div>} /> } />
 
       {/* 404 route must be last */}
       <Route component={NotFound} />

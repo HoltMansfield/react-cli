@@ -1,7 +1,7 @@
 const rek = require('rekuire')
 const _ = require('lodash')
 const projectPaths = rek('project-paths')
-const messages = rek('messages')
+const messages = rek('console-messages')
 const fileSystem = rek('file-system')
 const strings = rek('strings')
 let templates = require('./templates/templates.json')
@@ -16,8 +16,19 @@ const checkForJsonDefinition = () => {
   try {
     nextForm = require(path)
   } catch (e) {
-    messages.error(`Missing JSON form defintion at: ${path}`)
+    messages.error(`Missing JSON form definition at: ${path}`)
     messages.info(`Please see instructions here: ${root}/cli/forms/readMe.md`)
+  }
+}
+
+const checkForFirebaseCollectionDefinition = (collectionName) => {
+  const path = `${root}/src/collections/${collectionName}.js`
+
+  try {
+    nextForm = require(path)
+  } catch (e) {
+    messages.error(`Missing JSON collection definition at: ${path}`)
+    messages.info(`Please see instructions here: ${root}/src/collections/docs/readMe.md`)
   }
 }
 
@@ -279,9 +290,20 @@ const getInitialization = () => {
   return initializers.join('\r\n')
 }
 
-const buildForm = async (templateData) => {
+const getDestinationPath = (templateData, fbAddCreateTemplateData) => {
+  const { formNamePascalCase, formNameSnakeCase} = templateData
+  const { collectionName, collectionNameSingularPascalCase } = fbAddCreateTemplateData
+
+  if(fbAddCreateTemplateData) {
+    return `src/components/firebase/collections/${collectionName}/create/${collectionNameSingularPascalCase}Form.jsx`
+  }
+
+  return `${root}/src/components/${formNameSnakeCase}/${formNamePascalCase}.jsx`
+}
+
+const buildForm = async (templateData, fbAddCreateTemplateData) => {
   const path = `${__dirname}/templates/new-component.jsx`
-  const destinationPath = `${root}/src/components/${templateData.formNameSnakeCase}/${templateData.formNamePascalCase}.jsx`
+  const destinationPath = getDestinationPath(templateData, fbAddCreateTemplateData)
   let lines = await fileSystem.getLines(path)
 
   lines = updateFormName(lines, templateData)
@@ -347,10 +369,24 @@ const addForm = async (formName) => {
     await buildForm(templateData)
     // await addTemplates(templateData)
   } catch (e) {
-    messages.handleError(e, 'addTemplates')
+    messages.handleError(e, 'addForm')
+  }
+}
+
+const addFirebaseForm = async (fbAddCreateTemplateData) => {
+  try {
+    checkForFirebaseCollectionDefinition(fbAddCreateTemplateData.collectionName)
+    const templateData = getTemplateData(fbAddCreateTemplateData.collectionName)
+    updateTemplates(templateData, fbAddCreateTemplateData)
+    await createFolders(templateData)
+    await buildForm(templateData, fbAddCreateTemplateData)
+    // await addTemplates(templateData)
+  } catch (e) {
+    messages.handleError(e, 'addForm')
   }
 }
 
 module.exports = {
-  addForm
+  addForm,
+  addFirebaseForm
 }

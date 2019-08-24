@@ -1,6 +1,7 @@
 const rek = require('rekuire')
 const shell = require('shelljs')
-const messages = rek('messages')
+const exec = require('child_process').exec
+const messages = rek('console-messages')
 
 
 const execute = async (command) => {
@@ -11,6 +12,19 @@ const execute = async (command) => {
   messages.info(`Shell command: ${command}`)
 }
 
+const executeAsync = (command) => {
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error !== null) {
+        reject(error)
+      }
+
+      resolve(true)
+    })
+  })
+}
+
 module.exports = {
-  execute
+  execute,
+  executeAsync
 }

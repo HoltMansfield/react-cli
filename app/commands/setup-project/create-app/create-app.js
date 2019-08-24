@@ -5,7 +5,7 @@ const fs = require('fs').promises
 const shell = rek('shell')
 const fileSystem = rek('file-system')
 const packageDotJson = rek('package-dot-json')
-const messages = rek('messages')
+const messages = rek('console-messages')
 
 
 let root
@@ -63,8 +63,8 @@ const addNpmPackages = async () => {
     'redux',
     'react-intl',
     'react-loadable',
-    'react-router-dom@next',
-    'react-router@next',
+    'react-router-dom',
+    'react-router',
     'use-substate',
     'use-media',
     'react-toastify',
@@ -84,12 +84,12 @@ const addNpmPackages = async () => {
 
   try {
     // first we install npm packages
-    shell.execute(`cd ${newAppName} && npm i ${packageList.join(' ')}`)
+    await shell.executeAsync(`cd ${newAppName} && npm i ${packageList.join(' ')}`)
 
     await fileSystem.deleteFile(`${root}${seperator}package-lock.json`)
 
     // then we install dev npm packages
-    shell.execute(`cd ${newAppName} && npm i -D ${devPackageList.join(' ')}`)
+    await shell.executeAsync(`cd ${newAppName} && npm i -D ${devPackageList.join(' ')}`)
     return
   } catch (e) {
     messages.handleError(e, 'addNpmPackages')
@@ -166,11 +166,7 @@ const createApp = async (appName) => {
   shell.execute(`npx create-react-app ${appName}`)
   root = `${process.cwd()}/${appName}`
   newAppName = appName
-
   messages.info('CRA is done ************')
-
-  // create a dependency on our cli-app
-  shell.execute(`cd ${appName} && npm i -D react-cli`)
 
   createAppFromCRA()
 }

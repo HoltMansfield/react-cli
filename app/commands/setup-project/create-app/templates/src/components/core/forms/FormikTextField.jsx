@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Flex from 'flexbox-react'
 import TextField from '@material-ui/core/TextField'
 import { getErrors, hasErrors } from './forms'

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "errorPage.title",
+    "defaultMessage": "Something went wrong",
+    "filepath": "src/components/App.js"
+  },
+  {
+    "id": "errorPage.errorDetails",
+    "defaultMessage": "Error Details:",
+    "filepath": "src/components/App.js"
+  },
+  {
+    "id": "404Page.title",
+    "defaultMessage": "404: Page Not Found",
+    "filepath": ""
+  },
+  {
+    "id": "api.genericError",
+    "defaultMessage": "An API error has occurred",
+    "filepath": ""
+  },
+  {
+    "id": "api.criticalError",
+    "defaultMessage": "A critical error occurred.  Please refresh your browser.",
+    "filepath": ""
+  },
+  {
+    "id": "firebase.createError",
+    "defaultMessage": "An error occurred while creating a {name}.  Please try again.",
+    "filepath": ""
+  },
+  {
+    "id": "firebase.updateError",
+    "defaultMessage": "An error occurred while updating a {name}.  Please try again.",
+    "filepath": ""
+  },
+  {
+    "id": "firebase.deleteError",
+    "defaultMessage": "An error occurred while deleting a {name}.  Please try again.",
+    "filepath": ""
+  },
+  {
+    "id": "firebase.queryError",
+    "defaultMessage": "An error occurred while fetching {name} data.  Please try refresh your browser.",
+    "filepath": ""
+  }
+]

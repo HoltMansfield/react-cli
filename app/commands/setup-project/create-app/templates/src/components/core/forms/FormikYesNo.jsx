@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Flex from 'flexbox-react'
 import Radio from '@material-ui/core/Radio'
 /*

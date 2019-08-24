@@ -16,7 +16,17 @@ export const useHandleError = (errorInstance) => {
     error(message)
   }
 
+  const handleGenericCritical = (errorInstance) => {
+    captureException(errorInstance.error, errorInstance.data)
+
+    const messageId = 'api.criticalError'
+    const defaultMessage = 'A critical error occurred.  Please refresh your browser.'
+    const message = translateMessage({ messageId, defaultMessage })
+    error(message)
+  }
+
   return {
-    handleError
+    handleError,
+    handleGenericCritical
   }
 }

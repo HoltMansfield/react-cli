@@ -18,5 +18,10 @@
     "id": "api.genericError",
     "defaultMessage": "An API error has occurred",
     "filepath": ""
+  },
+  {
+    "id": "api.criticalError",
+    "defaultMessage": "A critical error occurred.  Please refresh your browser.",
+    "filepath": ""
   }
 ]

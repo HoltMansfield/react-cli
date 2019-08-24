@@ -3,7 +3,8 @@ const fs = require('fs').promises
 const fsOG = require('fs')
 const fsEXTRA = require('node-fs-extra')
 const lineReader = require('line-reader')
-const messages = rek('messages')
+const messages = rek('console-messages')
+const { find } = require('ramda')
 
 
 const deleteFile = async (path) => {
@@ -21,6 +22,10 @@ const writeFile = (destinationPath, content) => {
 
 const readFile = (path) => {
   return fs.readFile(path)
+}
+
+const readFileIntoString = (path) => {
+  return fs.readFile(path, "utf8")
 }
 
 const makeDirectory = (path) => {
@@ -138,7 +143,7 @@ const alphabetizeReducerImports = (lines, leading, type) => {
   )
   // add one to get the next line
   startIndex++
-  // subtract one to get the line above
+  // subtract one to get the previous line
   endIndex--
   let numberOfLines = (endIndex - startIndex) +1
   const linesToSort = lines.splice(startIndex, numberOfLines)
@@ -192,10 +197,15 @@ const insertAtGeneratorTag = (lines, generatorToken, newText) => {
   }
 }
 
+// const replaceToken = (lines, token, newText) => {
+//   const oldText = lines.find(line => line.text.indexOf(token) !== -1).text
+// }
+
 module.exports = {
   deleteFile,
   writeFile,
   readFile,
+  readFileIntoString,
   makeDirectory,
   outputFile,
   getLines,
