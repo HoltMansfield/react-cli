@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import MomentUtils from '@date-io/moment'
 import { ThemeProvider } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -41,14 +43,14 @@ export function FoundationApp () {
         <BrowserRouter>
           <MuiThemeProvider theme={materialTheme}>
             <ThemeProvider theme={styledComponentsTheme}>
-              <>
+              <MuiPickersUtilsProvider utils={MomentUtils}>
                 <Spinner />
                 <Overlay />
                 <ToastContainer />
                 <GlobalStyle />
                 <CssBaseline />
                 <App/>
-              </>
+              </MuiPickersUtilsProvider>
             </ThemeProvider>
           </MuiThemeProvider>
         </BrowserRouter>

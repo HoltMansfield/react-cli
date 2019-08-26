@@ -1,6 +1,6 @@
 [
   {
     "templatePath": "/new-create-component.jsx",
-    "destinationPath": "/src/components/firebase/collections/<%= collectionNamePascalCase %>/create/Create<%= collectionNamePascalCase %>.js"
+    "destinationPath": "/src/components/firebase/collections/<%= collectionNamePascalCase %>/create/Create<%= collectionNameSingularPascalCase %>.js"
   }
 ]

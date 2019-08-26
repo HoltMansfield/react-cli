@@ -1,6 +1,6 @@
 import React from 'react'
 import Flex from 'flexbox-react'
-import { DatePicker } from 'material-ui-pickers'
+import { KeyboardDatePicker } from '@material-ui/pickers'
 import { getErrors, hasErrors } from './forms'
 import { ErrorMessage } from './ErrorMessage'
 /*
@@ -11,15 +11,13 @@ import { ErrorMessage } from './ErrorMessage'
     formikProps={props}
   />
 
-  https://material-ui-pickers.firebaseapp.com/api/datepicker
-
 */
 export function FormikDatePicker (props) {
   const { id, label, format } = props
   const { values, errors, touched, setFieldValue, setFieldTouched } = props.formikProps
 
   const handleChange = selectedDate => {
-    setFieldValue(id, selectedDate)
+    setFieldValue(id, selectedDate.toDate())
   }
 
   const handleBlur = () => {
@@ -36,7 +34,7 @@ export function FormikDatePicker (props) {
   return (
     <Flex margin="13px 10px 0px 10px" flexGrow={1} flexDirection="column">
       <Flex flexGrow={1}>
-        <DatePicker
+        <KeyboardDatePicker
           id={id}
           label={label}
           value={values[id]}

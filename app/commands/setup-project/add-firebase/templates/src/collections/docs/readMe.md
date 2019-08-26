@@ -1,3 +1,18 @@
+Step 1:
+    Create a file in the src/collections folder corresponding to the name of your firebase collection
+    example: src/collections/teams
+
+    Collections here MUST have a file name in plural form
+    when running cli commands always use the singular form
+    (we use a pluralization engine)
+
+    If this collection has not been created in firebase it will be automatically created the first time you    try to use it
+
+Step 2:
+  Starting with the example.js document in this folder define a schema following the rules below
+
+
+
 Property Definition format:
 
   <property-name>: {

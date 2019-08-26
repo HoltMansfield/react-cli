@@ -8,6 +8,7 @@ const fileSystem = rek('file-system')
 let templates = require('./templates/templates.json')
 const strings = rek('strings')
 const { addFirebaseForm } = rek('add-form')
+const { verifyUseCollection } = rek('fb-verify')
 
 const root = projectPaths.getProjectRoot(__dirname)
 const seperator = projectPaths.getSeparator()
@@ -28,6 +29,8 @@ const updateTemplates = (templateData) => {
   templates = JSON.stringify(templates, null, 2)
   templates = templates.replace(/<%= collectionNameSnakeCase %>/g, templateData.collectionNameSnakeCase)
   templates = templates.replace(/<%= collectionNamePascalCase %>/g, templateData.collectionNamePascalCase)
+  templates = templates.replace(/<%= collectionNameSingularPascalCase %>/g, templateData.collectionNameSingularPascalCase)
+
   templates = JSON.parse(templates)
 }
 
@@ -69,11 +72,15 @@ const createFolders = async (templateData) => {
 
 const fbAddCreate = async (collectionName) => {
   const templateData = getTemplateData(collectionName)
-  updateTemplates(templateData)
-  await createFolders(templateData)
-  await addTemplates(templateData)
-  // this is it's own command
-  await addFirebaseForm(templateData)
+  const hasUseCollection = verifyUseCollection(root, templateData)
+  
+  if (hasUseCollection) {
+    updateTemplates(templateData)
+    await createFolders(templateData)
+    await addTemplates(templateData)
+    // this is it's own command
+    await addFirebaseForm(templateData)
+  }
 }
 
 module.exports = {

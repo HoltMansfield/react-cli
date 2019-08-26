@@ -25,8 +25,8 @@ export const useHandleError = (errorInstance) => {
     error(message)
   }
 
-  const handleFirebaseCreate = (error, collectionName, collectionNameSingular, data) => {
-    captureException(error, {...data, collectionName })
+  const handleFirebaseCreate = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
 
     const messageId = 'firebase.createError'
     const defaultMessage = 'An error occurred while creating a {name}.  Please try again.'
@@ -35,8 +35,8 @@ export const useHandleError = (errorInstance) => {
     error(messageBody)
   }
 
-  const handleFirebaseUpdate = (error, collectionName, collectionNameSingular, data) => {
-    captureException(error, {...data, collectionName })
+  const handleFirebaseUpdate = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
 
     const messageId = 'firebase.updateError'
     const defaultMessage = 'An error occurred while updating a {name}.  Please try again.'
@@ -45,8 +45,8 @@ export const useHandleError = (errorInstance) => {
     error(messageBody)
   }
 
-  const handleFirebaseDestroy = (error, collectionName, collectionNameSingular, data) => {
-    captureException(error, {...data, collectionName })
+  const handleFirebaseDestroy = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
 
     const messageId = 'firebase.deleteError'
     const defaultMessage = 'An error occurred while deleting a {name}.  Please try again.'
@@ -55,8 +55,8 @@ export const useHandleError = (errorInstance) => {
     error(messageBody)
   }
 
-  const handleFirebaseQuery = (error, collectionName, collectionNameSingular, data) => {
-    captureException(error, {...data, collectionName })
+  const handleFirebaseQuery = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
 
     const messageId = 'firebase.queryError'
     const defaultMessage = 'An error occurred while fetching {name} data.  Please try refresh your browser.'

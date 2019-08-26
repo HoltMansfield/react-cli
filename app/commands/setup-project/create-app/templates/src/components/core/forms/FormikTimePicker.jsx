@@ -1,6 +1,6 @@
 import React from 'react'
 import Flex from 'flexbox-react'
-import { TimePicker } from 'material-ui-pickers'
+import { KeyboardTimePicker } from '@material-ui/pickers'
 import { getErrors, hasErrors } from './forms'
 import { ErrorMessage } from './ErrorMessage'
 /*
@@ -11,16 +11,13 @@ import { ErrorMessage } from './ErrorMessage'
     formikProps={props}
   />
 
-  https://material-ui-pickers.firebaseapp.com/api/TimePicker
-
 */
 export function FormikTimePicker (props) {
   const { id, label, format } = props
   const { values, errors, touched, setFieldValue, setFieldTouched } = props.formikProps
 
   const handleChange = selectedDate => {
-    debugger
-    setFieldValue(id, selectedDate)
+    setFieldValue(id, selectedDate.toDate())
   }
 
   const handleBlur = () => {
@@ -37,7 +34,7 @@ export function FormikTimePicker (props) {
   return (
     <Flex margin="13px 10px 0px 10px" flexGrow={1} flexDirection="column">
       <Flex flexGrow={1}>
-        <TimePicker
+        <KeyboardTimePicker
           id={id}
           label={label}
           value={values[id]}

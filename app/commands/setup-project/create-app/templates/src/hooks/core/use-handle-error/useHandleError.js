@@ -25,8 +25,52 @@ export const useHandleError = (errorInstance) => {
     error(message)
   }
 
+  const handleFirebaseCreate = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
+
+    const messageId = 'firebase.createError'
+    const defaultMessage = 'An error occurred while creating a {name}.  Please try again.'
+    const message = translateMessage({ messageId, defaultMessage })
+    const messageBody = message.replace('{name}', collectionNameSingular)
+    error(messageBody)
+  }
+
+  const handleFirebaseUpdate = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
+
+    const messageId = 'firebase.updateError'
+    const defaultMessage = 'An error occurred while updating a {name}.  Please try again.'
+    const message = translateMessage({ messageId, defaultMessage })
+    const messageBody = message.replace('{name}', collectionNameSingular)
+    error(messageBody)
+  }
+
+  const handleFirebaseDestroy = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
+
+    const messageId = 'firebase.deleteError'
+    const defaultMessage = 'An error occurred while deleting a {name}.  Please try again.'
+    const message = translateMessage({ messageId, defaultMessage })
+    const messageBody = message.replace('{name}', collectionNameSingular)
+    error(messageBody)
+  }
+
+  const handleFirebaseQuery = (firebaseError, collectionName, collectionNameSingular, data) => {
+    captureException(firebaseError, {...data, collectionName })
+
+    const messageId = 'firebase.queryError'
+    const defaultMessage = 'An error occurred while fetching {name} data.  Please try refresh your browser.'
+    const message = translateMessage({ messageId, defaultMessage })
+    const messageBody = message.replace('{name}', collectionNameSingular)
+    error(messageBody)
+  }
+
   return {
     handleError,
-    handleGenericCritical
+    handleGenericCritical,
+    handleFirebaseCreate,
+    handleFirebaseUpdate,
+    handleFirebaseDestroy,
+    handleFirebaseQuery
   }
 }

@@ -32,7 +32,9 @@ const checkForFirebaseCollectionDefinition = (collectionName) => {
   }
 }
 
-const getTemplateData = (formName) => {
+const getTemplateData = (formName, formSuffix) => {
+  formName = `${formName}${formSuffix}`
+ 
   return {
     formName,
     formNamePascalCase: strings.capitalizeFirstLetter(formName),
@@ -376,7 +378,7 @@ const addForm = async (formName) => {
 const addFirebaseForm = async (fbAddCreateTemplateData) => {
   try {
     checkForFirebaseCollectionDefinition(fbAddCreateTemplateData.collectionName)
-    const templateData = getTemplateData(fbAddCreateTemplateData.collectionName)
+    const templateData = getTemplateData(fbAddCreateTemplateData.collectionNameSingular, 'Form')
     updateTemplates(templateData, fbAddCreateTemplateData)
     await createFolders(templateData)
     await buildForm(templateData, fbAddCreateTemplateData)

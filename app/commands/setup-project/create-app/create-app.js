@@ -56,7 +56,8 @@ const addNpmPackages = async () => {
     'moment',
     '@material-ui/core',
     '@material-ui/icons',
-    'material-ui-pickers',
+    '@material-ui/pickers',
+    '@date-io/moment',
     'styled-components',
     'redux-devtools-extension',
     'react-redux', // Do we need this???
