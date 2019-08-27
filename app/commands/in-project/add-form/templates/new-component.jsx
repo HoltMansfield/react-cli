@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 
 
 function <%= formNamePascalCase %>Raw (props) {
-  const { values, onSubmit } = props
+  const { values, onSubmit, resetForm } = props
   //GeneratorToken: <next-options>
 
   return (
@@ -15,7 +15,7 @@ function <%= formNamePascalCase %>Raw (props) {
       //GeneratorToken: <fields>
       <Flex>
         <SubmitButton
-          onSubmit={() => onSubmit(values)}
+          onSubmit={() => onSubmit(values, resetForm)}
           values={values}
           validationSchema={validationSchema}
         >
@@ -33,6 +33,7 @@ const formikConfig = {
   validateOnChange: true,
   enableReinitialize: true,
   mapPropsToValues: props => {
+    const initialValues = props.initialValues || {}
     return {
       //GeneratorToken: <mapPropsToValues>
     }

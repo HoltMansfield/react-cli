@@ -4,7 +4,7 @@ import { useRouteState } from 'hooks/core/use-route-state/useRouteState'
 import { Create<%= collectionNameSingularPascalCase %> as Create<%= collectionNameSingularPascalCase %>Container } from 'components/firebase/collections/<%= collectionName %>/create/Create<%= collectionNameSingularPascalCase %>'
 
 
-export default function <%= urlPascalCase %> () {
+export default function <%= urlPascalCase %> ({ history }) {
   const { routeState, setRouteState } = useRouteState()
 
   useEffect(() => {
@@ -12,7 +12,11 @@ export default function <%= urlPascalCase %> () {
     setRouteState({})
   },[])
 
+  const onCreate = (data) => {
+    history.push('/list-<%= collectionName %>')
+  }
+
   return (
-    <Create<%= collectionNameSingularPascalCase %>Container />
+    <Create<%= collectionNameSingularPascalCase %>Container onCreate={onCreate} />
   )
 }

@@ -34,7 +34,7 @@ const checkForFirebaseCollectionDefinition = (collectionName) => {
 
 const getTemplateData = (formName, formSuffix) => {
   formName = `${formName}${formSuffix}`
- 
+
   return {
     formName,
     formNamePascalCase: strings.capitalizeFirstLetter(formName),
@@ -261,21 +261,21 @@ const getInitialValue = (name, type) => {
 
   switch(type) {
     case 'string':
-      return `      ${name}: '',`
+      return `      ${name}: initialValues.${name} || '',`
     case 'boolean':
-      return `      ${name}: null,`
+      return `      ${name}: initialValues.${name} || null,`
     case 'checkboxes':
-      return `      ${name}: [],`
+      return `      ${name}: initialValues.${name} || [],`
     case 'radioButtons':
-      return `      ${name}: null,`
+      return `      ${name}: initialValues.${name} || null,`
     case 'select':
-      return `      ${name}: '',`
+      return `      ${name}: initialValues.${name} || '',`
     case 'toggle':
-      return `      ${name}: '',`
+      return `      ${name}: initialValues.${name} || '',`
     case 'date':
-      return `      ${name}: null,`
+      return `      ${name}: initialValues.${name} || null,`
     case 'time':
-      return `      ${name}: null,`
+      return `      ${name}: initialValues.${name} || null,`
     default:
       throw new Error(`${fieldDefinition.type} not found in getInitialValue`)
   }
