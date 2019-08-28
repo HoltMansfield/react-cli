@@ -4,6 +4,8 @@ const { fbAddCreate } = rek('fb-add-create')
 const { fbAddCreateRoute } = rek('fb-add-create-route')
 const { fbAddList } = rek('fb-add-list')
 const { fbAddListRoute } = rek('fb-add-list-route')
+const { fbAddDetails } = rek('fb-add-details')
+const { fbAddDetailsRoute } = rek('fb-add-details-route')
 
 
 const addFirebaseCommands = (program) => {
@@ -32,6 +34,15 @@ const addFirebaseCommands = (program) => {
     .description('Create a route, and components for listing documents in a firebase collection')
     .action((collectionName) => fbAddListRoute(collectionName))
 
+  program
+    .command('fb-add-details <collectionName>')
+    .description('Create components for rendering a document from a firebase collection')
+    .action((collectionName) => fbAddDetails(collectionName))
+
+  program
+    .command('fb-add-details-route <collectionName>')
+    .description('Create a route, and components for rendering a document from a firebase collection')
+    .action((collectionName) => fbAddDetailsRoute(collectionName))
   return program
 }
 

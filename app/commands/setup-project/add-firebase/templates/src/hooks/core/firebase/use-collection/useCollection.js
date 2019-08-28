@@ -42,7 +42,7 @@ export const useCollection = (collectionName, collectionNameSingular) => {
       })
       return result
     } catch (error) {
-      handleFirebaseQuery(error, collectionName, collectionNameSingular, { ...query })
+      handleFirebaseQuery(error, collectionName, collectionNameSingular)
     }
   }
 

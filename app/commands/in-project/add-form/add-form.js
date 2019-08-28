@@ -79,7 +79,7 @@ const getImportForType = (type) => {
     case 'toggle':
       return 'FormikToggle'
     default:
-      throw new Error(`${fieldDefinition.type} not found in getImportForType`)
+      throw new Error(`${type} not found in getImportForType`)
   }
 }
 
