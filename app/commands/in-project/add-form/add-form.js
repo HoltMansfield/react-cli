@@ -4,6 +4,7 @@ const projectPaths = rek('project-paths')
 const messages = rek('console-messages')
 const fileSystem = rek('file-system')
 const strings = rek('strings')
+const { checkForFirebaseCollectionDefinition } = rek('fb-verify')
 let templates = require('./templates/templates.json')
 
 
@@ -18,17 +19,6 @@ const checkForJsonDefinition = () => {
   } catch (e) {
     messages.error(`Missing JSON form definition at: ${path}`)
     messages.info(`Please see instructions here: ${root}/cli/forms/readMe.md`)
-  }
-}
-
-const checkForFirebaseCollectionDefinition = (collectionName) => {
-  const path = `${root}/src/collections/${collectionName}.js`
-
-  try {
-    nextForm = require(path)
-  } catch (e) {
-    messages.error(`Missing JSON collection definition at: ${path}`)
-    messages.info(`Please see instructions here: ${root}/src/collections/docs/readMe.md`)
   }
 }
 
@@ -377,11 +367,14 @@ const addForm = async (formName) => {
 
 const addFirebaseForm = async (fbAddCreateTemplateData) => {
   try {
-    checkForFirebaseCollectionDefinition(fbAddCreateTemplateData.collectionName)
-    const templateData = getTemplateData(fbAddCreateTemplateData.collectionNameSingular, 'Form')
-    updateTemplates(templateData, fbAddCreateTemplateData)
-    await createFolders(templateData)
-    await buildForm(templateData, fbAddCreateTemplateData)
+    nextForm = checkForFirebaseCollectionDefinition(root, fbAddCreateTemplateData.collectionName)
+
+    if (nextForm) {
+      const templateData = getTemplateData(fbAddCreateTemplateData.collectionNameSingular, 'Form')
+      updateTemplates(templateData, fbAddCreateTemplateData)
+      await createFolders(templateData)
+      await buildForm(templateData, fbAddCreateTemplateData)
+    }
     // await addTemplates(templateData)
   } catch (e) {
     messages.handleError(e, 'addForm')

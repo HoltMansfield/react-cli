@@ -25,8 +25,14 @@ const mapToUnderbarsAllCaps = (string) => {
   return string.replace(/([a-z])([A-Z])/g, '$1_$2').toUpperCase()
 }
 
+// zeebraMuffin becomes Zeebra Muffin
+const mapToLabel = (string) => {
+  return capitalizeFirstLetter(string).match(/[A-Z][a-z]+|[0-9]+/g).join(" ")
+}
+
 module.exports = {
   capitalizeFirstLetter,
   mapToSnakeCase,
-  mapToUnderbarsAllCaps
+  mapToUnderbarsAllCaps,
+  mapToLabel
 }

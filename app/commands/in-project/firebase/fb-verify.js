@@ -3,6 +3,18 @@ const rek = require('rekuire')
 const messages = rek('console-messages')
 
 
+const checkForFirebaseCollectionDefinition = (root, collectionName) => {
+  const path = `${root}/src/collections/${collectionName}.js`
+
+  try {
+    const schema = require(path)
+    return schema
+  } catch (e) {
+    messages.error(`Missing JSON collection definition at: ${path}`)
+    messages.info(`Please see instructions here: ${root}/src/collections/docs/readMe.md`)
+  }
+}
+
 const verifyUseCollection = (root, collectionTemplateData) => {
   const { collectionNameSingular, collectionNameSnakeCase, collectionNamePascalCase } = collectionTemplateData
   const path = `${root}/src/hooks/core/firebase/collections/use-${collectionNameSnakeCase}/use${collectionNamePascalCase}.js`
@@ -18,5 +30,6 @@ const verifyUseCollection = (root, collectionTemplateData) => {
 }
 
 module.exports = {
+  checkForFirebaseCollectionDefinition,
   verifyUseCollection
 }

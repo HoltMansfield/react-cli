@@ -32,6 +32,20 @@ export const useCollection = (collectionName, collectionNameSingular) => {
     }
   }
 
+  const getAll = async () => {
+    try {
+      const querySnapshot = await collection.get()
+      const result = []
+      querySnapshot.forEach(doc => {
+        // doc.data() is never undefined for query doc snapshots
+        result.push({ id: doc.id, ...doc.data()})
+      })
+      return result
+    } catch (error) {
+      handleFirebaseQuery(error, collectionName, collectionNameSingular, { ...query })
+    }
+  }
+
   const updateById = async (id, propertiesToUpdate) => {
     try {
       return await collection.doc(id).update(propertiesToUpdate)
@@ -77,7 +91,7 @@ export const useCollection = (collectionName, collectionNameSingular) => {
       const result = []
       querySnapshot.forEach(doc => {
         // doc.data() is never undefined for query doc snapshots
-        result.push(doc.data())
+        result.push({ id: doc.id, ...doc.data()})
       })
       return result
     } catch (error) {
@@ -88,6 +102,7 @@ export const useCollection = (collectionName, collectionNameSingular) => {
   return {
     create,
     getById,
+    getAll,
     updateById,
     destroy,
     where

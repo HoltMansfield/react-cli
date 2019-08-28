@@ -1,0 +1,6 @@
+[
+  {
+    "templatePath": "/new-list-component-smart.jsx",
+    "destinationPath": "/src/components/firebase/collections/<%= collectionNamePascalCase %>/list/ListAll<%= collectionNamePascalCase %>.js"
+  }
+]

@@ -2,6 +2,9 @@ const rek = require('rekuire')
 const { fbAddCollection } = rek('fb-add-use-collection')
 const { fbAddCreate } = rek('fb-add-create')
 const { fbAddCreateRoute } = rek('fb-add-create-route')
+const { fbAddList } = rek('fb-add-list')
+const { fbAddListRoute } = rek('fb-add-list-route')
+
 
 const addFirebaseCommands = (program) => {
   program
@@ -18,6 +21,16 @@ const addFirebaseCommands = (program) => {
     .command('fb-add-create-route <collectionName>')
     .description('Create a route, dumb form and smart component for creating a document in a firebase collection')
     .action((collectionName) => fbAddCreateRoute(collectionName))
+
+  program
+    .command('fb-add-list <collectionName>')
+    .description('Create components for listing documents in a firebase collection')
+    .action((collectionName) => fbAddList(collectionName))
+
+  program
+    .command('fb-add-list-route <collectionName>')
+    .description('Create a route, and components for listing documents in a firebase collection')
+    .action((collectionName) => fbAddListRoute(collectionName))
 
   return program
 }

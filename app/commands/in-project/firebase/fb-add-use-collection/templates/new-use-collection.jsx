@@ -12,6 +12,10 @@ export const use<%= collectionNamePascalCase %> = () => {
     return <%= collectionName %>.getById(id)
   }
 
+  const getAll = async () => {
+    return <%= collectionName %>.getAll()
+  }
+
   const update = async (id, propertiesToUpdate) => {
     return <%= collectionName %>.updateById(id, propertiesToUpdate)
   }
@@ -33,6 +37,7 @@ export const use<%= collectionNamePascalCase %> = () => {
   return {
     create,
     get,
+    getAll,
     update,
     destroy,
     findOne
