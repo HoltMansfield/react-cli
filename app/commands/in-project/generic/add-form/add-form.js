@@ -48,6 +48,17 @@ const createFolders = async (templateData) => {
   }
 }
 
+const createFirebaseFolders = async (templateData) => {
+  const { collectionName, collectionNameSingularPascalCase } = templateData
+  try {
+    const path = `src/components/firebase/collections/${collectionName}/forms`
+    await fileSystem.makeDirectory(path)
+
+  } catch (e) {
+    messages.handleError(e, 'createFirebaseFolders')
+  }
+}
+
 const getHashOfTypes = () => {
   const types = {}
 
@@ -287,7 +298,7 @@ const getDestinationPath = (templateData, fbAddCreateTemplateData) => {
   const { collectionName, collectionNameSingularPascalCase } = fbAddCreateTemplateData
 
   if(fbAddCreateTemplateData) {
-    return `src/components/firebase/collections/${collectionName}/create/${collectionNameSingularPascalCase}Form.jsx`
+    return `src/components/firebase/collections/${collectionName}/forms/${collectionNameSingularPascalCase}Form.jsx`
   }
 
   return `${root}/src/components/${formNameSnakeCase}/${formNamePascalCase}.jsx`
@@ -372,7 +383,7 @@ const addFirebaseForm = async (fbAddCreateTemplateData) => {
     if (nextForm) {
       const templateData = getTemplateData(fbAddCreateTemplateData.collectionNameSingular, 'Form')
       updateTemplates(templateData, fbAddCreateTemplateData)
-      await createFolders(templateData)
+      await createFirebaseFolders(fbAddCreateTemplateData)
       await buildForm(templateData, fbAddCreateTemplateData)
     }
     // await addTemplates(templateData)

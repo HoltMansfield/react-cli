@@ -13,7 +13,9 @@ export default function <%= urlPascalCase %> ({ history }) {
   },[])
 
   const onSelect = (id) => {
-    history.push(`/<%= collectionNameSingular %>-details/${id}`)
+    let url = "/<%= collectionNameSingular %>-details/"
+    url = url + id
+    history.push(url)
   }
 
   return (
