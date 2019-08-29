@@ -72,9 +72,10 @@ const createFolders = async (templateData) => {
 
 const getDetailLineForType = (type, key, templateData) => {
   const { collectionNameSingular } = templateData
+  const label = strings.mapToLabel(key)
   switch(type) {
     case 'string':
-      return `<div>{${collectionNameSingular}.${key}}</div>`
+      return `<div>${label}: { ${collectionNameSingular}.${key} }</div>`
     case 'boolean':
       return '<div>{${collectionNameSingular}.${key}}</div>'
     case 'checkboxes':
@@ -94,6 +95,12 @@ const getDetailLineForType = (type, key, templateData) => {
     default:
       throw new Error(`${type} not found in getDetailLineForType`)
   }
+}
+
+const getEditLink = (templateData) => {
+  const { collectionNameSingular } = templateData
+
+  return `\t\t\t\t\t\t<Link to={\`/edit-${collectionNameSingular}/\${${collectionNameSingular}.id}\`}>`
 }
 
 const getBodyContent = (collectionSchema, templateData) => {
@@ -120,6 +127,9 @@ const buildDumbComponent = async (templateData, collectionSchema) => {
 
     // now that it's updated, break it into lines for manual updates like we do in add-form
     const lines = templateFileContent.split('\n').map(line => ({ text: line }))
+
+    const editLinkContent = getEditLink(templateData)
+    fileSystem.insertAtGeneratorTag(lines, '//GeneratorToken: <edit-link>', editLinkContent)
 
     const bodyContent = getBodyContent(collectionSchema, templateData)
     fileSystem.insertAtGeneratorTag(lines, '//GeneratorToken: <body-content>', bodyContent)

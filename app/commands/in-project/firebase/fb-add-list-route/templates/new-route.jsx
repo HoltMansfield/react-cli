@@ -13,7 +13,7 @@ export default function <%= urlPascalCase %> ({ history }) {
   },[])
 
   const onSelect = (id) => {
-    history.push('/<%= collectionNameSingular %>-details/id')
+    history.push(`/<%= collectionNameSingular %>-details/${id}`)
   }
 
   return (

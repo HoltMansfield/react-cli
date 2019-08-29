@@ -23,7 +23,7 @@ export const useCollection = (collectionName, collectionNameSingular) => {
       const doc = await collection.doc(id).get()
 
       if(doc.exists) {
-        return doc.data()
+        return { id, ...doc.data() }
       }
 
       return null
