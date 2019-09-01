@@ -1,0 +1,6 @@
+[
+  {
+    "templatePath": "/new-edit-component.jsx",
+    "destinationPath": "/src/components/firebase/collections/<%= collectionNamePascalCase %>/edit/Edit<%= collectionNameSingularPascalCase %>.js"
+  }
+]

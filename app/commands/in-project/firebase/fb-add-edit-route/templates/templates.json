@@ -1,0 +1,6 @@
+[
+  {
+    "templatePath": "/new-route.jsx",
+    "destinationPath": "src/components/routes/<%= urlSnakeCase %>/<%= urlPascalCase %>.jsx"
+  }
+]

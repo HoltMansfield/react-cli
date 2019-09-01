@@ -64,13 +64,13 @@ const addTemplates = async (templateData) => {
 
 const createFolders = async (templateData) => {
   try {
-    await fileSystem.makeDirectory(`${root}/src/components/firebase/collections/${templateData.collectionName}/create`)
+    await fileSystem.makeDirectory(`${root}/src/components/firebase/collections/${templateData.collectionName}/edit`)
   } catch (e) {
     messages.handleError(e, 'createFolders')
   }
 }
 
-const fbAddCreate = async (collectionName) => {
+const fbAddEdit = async (collectionName) => {
   const templateData = getTemplateData(collectionName)
   const hasUseCollection = verifyUseCollection(root, templateData)
   const hasForm = verifyFormExists(templateData)
@@ -88,5 +88,5 @@ const fbAddCreate = async (collectionName) => {
 }
 
 module.exports = {
-  fbAddCreate
+  fbAddEdit
 }

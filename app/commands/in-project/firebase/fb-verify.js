@@ -29,7 +29,19 @@ const verifyUseCollection = (root, collectionTemplateData) => {
   return true
 }
 
+const verifyFormExists = (templateData) => {
+  const { collectionName, collectionNameSingularPascalCase } = templateData
+  const path = `src/components/firebase/collections/${collectionName}/forms/${collectionNameSingularPascalCase}Form.jsx`
+
+  if (!fs.existsSync(path)) {
+    return false
+  }
+
+  return true
+}
+
 module.exports = {
   checkForFirebaseCollectionDefinition,
-  verifyUseCollection
+  verifyUseCollection,
+  verifyFormExists
 }

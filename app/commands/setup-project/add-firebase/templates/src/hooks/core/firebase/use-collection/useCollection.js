@@ -48,9 +48,11 @@ export const useCollection = (collectionName, collectionNameSingular) => {
 
   const updateById = async (id, propertiesToUpdate) => {
     try {
-      return await collection.doc(id).update(propertiesToUpdate)
+      await collection.doc(id).update(propertiesToUpdate)
+      return true
     } catch (error) {
       handleFirebaseUpdate(error, collectionName, collectionNameSingular, { id })
+      return false
     }
   }
 
