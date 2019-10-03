@@ -73,25 +73,21 @@ const createFolders = async (templateData) => {
 const getDetailLineForType = (type, key, templateData) => {
   const { collectionNameSingular } = templateData
   const label = strings.mapToLabel(key)
+
   switch(type) {
     case 'string':
-      return `<div>${label}: { ${collectionNameSingular}.${key} }</div>`
-    case 'boolean':
-      return '<div>{${collectionNameSingular}.${key}}</div>'
-    case 'checkboxes':
-      return 'FormikCheckboxArray'
-    case '<div>{${collectionNameSingular}.${key}}</div>':
-      return 'FormikRadioButtons'
+    case 'radioButtons':
     case 'select':
-      return '<div>{${collectionNameSingular}.${key}}</div>'
-    case 'yesNo':
-      return '<div>{${collectionNameSingular}.${key}}</div>'
-    case 'date':
-      return '<div>{${collectionNameSingular}.${key}}</div>'
-    case 'time':
-      return '<div>{${collectionNameSingular}.${key}}</div>'
+      return `<RenderStringProperty label="${label}" value={${collectionNameSingular}.${key}} />`
+    case 'boolean':
     case 'toggle':
-      return '<div>{${collectionNameSingular}.${key}}</div>'
+      return `<RenderTrueFalseProperty label="${label}" value={${collectionNameSingular}.${key}} />`
+    case 'checkboxes':
+      return `<RenderCheckboxes label="${label}" value={${collectionNameSingular}.${key}} />`
+    case 'date':
+      return `<RenderDate label="${label}" value={${collectionNameSingular}.${key}} />`
+    case 'time':
+      return `<RenderTime label="${label}" value={${collectionNameSingular}.${key}} />`
     default:
       throw new Error(`${type} not found in getDetailLineForType`)
   }

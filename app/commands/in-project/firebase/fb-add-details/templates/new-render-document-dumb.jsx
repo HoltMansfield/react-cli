@@ -6,6 +6,8 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import EditIcon from '@material-ui/icons/Edit'
+import Button from '@material-ui/core/Button'
+import { RenderStringProperty, RenderTrueFalseProperty, RenderCheckboxes, RenderTime, RenderDate } from 'components/core/firebase'
 
 
 export function <%= collectionNameSingularPascalCase %>Details ({ <%= collectionNameSingular %> }) {
@@ -22,7 +24,9 @@ export function <%= collectionNameSingularPascalCase %>Details ({ <%= collection
           </Flex>
           <Flex marginLeft="auto">
             <Link to="//GeneratorToken: <edit-link>">
-              <EditIcon />
+              <Button variant="contained">
+                <EditIcon />
+              </Button>
             </Link>
           </Flex>
         </Flex>

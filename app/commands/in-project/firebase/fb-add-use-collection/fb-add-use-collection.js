@@ -102,7 +102,7 @@ const createFolders = async (templateData) => {
   }
 }
 
-const fbAddCollection = async (collectionName, searchProperty) => {
+const fbAddUseCollection = async (collectionName, searchProperty) => {
   const templateData = getTemplateData(collectionName, searchProperty)
   updateTemplates(templateData)
   await createFolders(templateData)
@@ -110,5 +110,5 @@ const fbAddCollection = async (collectionName, searchProperty) => {
 }
 
 module.exports = {
-  fbAddCollection
+  fbAddUseCollection
 }

@@ -11,18 +11,20 @@ function <%= formNamePascalCase %>Raw (props) {
   //GeneratorToken: <next-options>
 
   return (
-    <Flex flexDirection="column">
-      //GeneratorToken: <fields>
-      <Flex>
-        <SubmitButton
-          onSubmit={() => onSubmit(values, resetForm)}
-          values={values}
-          validationSchema={validationSchema}
-        >
-          Save
-        </SubmitButton>
+    <ResponsiveMargins>
+      <Flex flexDirection="column">
+        //GeneratorToken: <fields>
+        <Flex>
+          <SubmitButton
+            onSubmit={() => onSubmit(values, resetForm)}
+            values={values}
+            validationSchema={validationSchema}
+          >
+            Save
+          </SubmitButton>
+        </Flex>
       </Flex>
-    </Flex>
+    </ResponsiveMargins>
   )
 }
 const validationSchema = Yup.object().shape({

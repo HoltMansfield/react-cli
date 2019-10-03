@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import DeleteIcon from '@material-ui/icons/Delete'
+import Button from '@material-ui/core/Button'
 import { useToaster } from 'hooks/core/use-toaster/useToaster'
 import { RouteLoading } from 'components/core/routing/route-loading/RouteLoading'
 import { <%= collectionNameSingularPascalCase %>Form } from '../forms/<%= collectionNameSingularPascalCase %>Form'
@@ -71,8 +72,10 @@ export function Edit<%= collectionNameSingularPascalCase %> ({ onUpdate, onDelet
               </Flex>
             </Link>
           </Flex>
-          <Flex marginLeft="auto" onClick={handleDelete}>
-            <DeleteIcon />
+          <Flex marginLeft="auto">
+            <Button variant="contained" onClick={handleDelete}>
+              <DeleteIcon />
+            </Button>
           </Flex>
         </Flex>
       </Grid>

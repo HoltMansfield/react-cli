@@ -85,6 +85,30 @@ const getHeaderContent = (collectionSchema, templateData) => {
   return  headerContent.join('\r\n')
 }
 
+const getTableContentByType = (type, key, templateData) => {
+  const { collectionNameSingular } = templateData
+
+  // strings are straight up, bools we toString
+  //renderBoolean()
+  switch(type) {
+    case 'string':
+    case 'radioButtons':
+    case 'select':
+      return `${collectionNameSingular}.${key}`
+    case 'boolean':
+    case 'toggle':
+      return `renderBoolean(${collectionNameSingular}.${key})`
+    case 'checkboxes':
+      return `renderCheckboxes(${collectionNameSingular}.${key})`
+    case 'date':
+      return `renderDate(${collectionNameSingular}.${key})`
+    case 'time':
+      return `renderTime(${collectionNameSingular}.${key})`
+    default:
+      throw new Error(`${type} not found in getTableContentByType`)
+  }
+}
+
 const getBodyContent = (collectionSchema, templateData) => {
   const { collectionNameSingular } = templateData
   // start the table
@@ -92,7 +116,7 @@ const getBodyContent = (collectionSchema, templateData) => {
 
   // one column for each field
   Object.keys(collectionSchema).forEach(function(key) {
-    bodyContent.push(`\t\t\t\t<TableCell>{${collectionNameSingular}.${key}}</TableCell>`)
+    bodyContent.push(`\t\t\t\t<TableCell>{${getTableContentByType(collectionSchema[key].type, key, templateData)}}</TableCell>`)
   })
 
   // end the table

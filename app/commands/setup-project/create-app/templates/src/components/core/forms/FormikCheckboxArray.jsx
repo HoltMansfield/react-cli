@@ -47,25 +47,53 @@ export function FormikCheckboxArray (props) {
     setFieldTouched(id, true)
   }
 
+  const getIdAndLabel = (checkbox) => {
+    if (checkbox.id) {
+      // array of objects
+      return {
+        id: checkbox.id,
+        label: checkbox.label
+      }
+    }
+
+    return {
+      // array of strings
+      id: checkbox,
+      label: checkbox
+    }
+  }
+
+  const getCheckedState = (checkbox) => {
+    if (checkbox.id) {
+      return values[id].includes(checkbox.id)
+    }
+
+    return values[id].includes(checkbox)
+  }
+
   const renderCheckboxes = () => {
-    return checkboxes.map(cb => (
-      <Flex alignItems="center" key={cb.id}>
-        <Flex>
-          <Checkbox
-            checked={values[id].includes(cb.id)}
-            onChange={handleChange(cb.id)}
-            onBlur={handleBlur}
-            color="primary"
-            inputProps={{
-              "aria-label": cb.label
-            }}
-          />
+    return checkboxes.map(cb => {
+      const { id, label } = getIdAndLabel(cb)
+
+      return (
+        <Flex alignItems="center" key={id}>
+          <Flex>
+            <Checkbox
+              checked={getCheckedState(cb)}
+              onChange={handleChange(id)}
+              onBlur={handleBlur}
+              color="primary"
+              inputProps={{
+                "aria-label": label
+              }}
+            />
+          </Flex>
+          <Flex>
+            {label}
+          </Flex>
         </Flex>
-        <Flex>
-          {cb.label}
-        </Flex>
-      </Flex>
-    ))
+      )
+    })
   }
 
   return (

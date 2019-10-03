@@ -96,7 +96,7 @@ const getImportForType = (type) => {
 
 const getImports = () => {
   const types = getHashOfTypes()
-  const imports = ['SubmitButton']
+  const imports = ['SubmitButton, ResponsiveMargins']
 
   Object.keys(types).forEach(function(key) {
     // types is a hash with types as keys
@@ -264,7 +264,7 @@ const getInitialValue = (name, type) => {
     case 'string':
       return `      ${name}: initialValues.${name} || '',`
     case 'boolean':
-      return `      ${name}: initialValues.${name} || null,`
+      return `      ${name}: initialValues.${name} || false,`
     case 'checkboxes':
       return `      ${name}: initialValues.${name} || [],`
     case 'radioButtons':
@@ -274,9 +274,8 @@ const getInitialValue = (name, type) => {
     case 'toggle':
       return `      ${name}: initialValues.${name} || '',`
     case 'date':
-      return `      ${name}: initialValues.${name} || null,`
     case 'time':
-      return `      ${name}: initialValues.${name} || null,`
+      return `      ${name}: initialValues.${name} ? initialValues.${name}.toDate() : null,`
     default:
       throw new Error(`${fieldDefinition.type} not found in getInitialValue`)
   }

@@ -58,9 +58,11 @@ export const useCollection = (collectionName, collectionNameSingular) => {
 
   const destroy = async (id) => {
     try {
-      return await collection.doc(id).delete()
+      await collection.doc(id).delete()
+      return true
     } catch (error) {
       handleFirebaseDestroy(error, collectionName, collectionNameSingular, { id })
+      return false
     }
   }
 
